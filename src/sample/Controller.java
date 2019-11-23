@@ -136,6 +136,12 @@ public class Controller {
     @FXML
     TextField nTo;
 
+    @FXML
+    Text A;
+    @FXML
+    Text M;
+    @FXML
+    Text D;
 
     MyEdge l;
     ArrayList<MyCircle> listc = new ArrayList<>();
@@ -159,7 +165,8 @@ public class Controller {
             MyCircle c = new MyCircle("asd");
             c.setCenterX(e.getX());
             c.setCenterY(e.getY());
-            c.setRadius(15);
+            c.setRadius(12);
+
 
             if(c.intersects(r.getLayoutBounds())) {
                 System.out.println("intersection");
@@ -201,6 +208,7 @@ public class Controller {
             Text t = new Text(name.toUpperCase());
             t.setX(c.getCenterX()-5);
             t.setY(c.getCenterY()-25);
+            t.setFill(Color.DARKRED);
             surface.getChildren().addAll(c,t);
             vmap.put(c,t);
         }
@@ -268,15 +276,26 @@ public class Controller {
             if(k.getCode() == KeyCode.A)
             {
                 System.out.println("A pressed");
+                A.setFill(Color.RED);
+                M.setFill(Color.BLACK);
+                D.setFill(Color.BLACK);
                 addEvents();
             }
 
             if(k.getCode()==KeyCode.D) {
                 System.out.println("D pressed");
+                A.setFill(Color.BLACK);
+                M.setFill(Color.BLACK);
+                D.setFill(Color.RED);
                 deleteEvents();
             }
-            /*if(k.getCode()==KeyCode.M)
-                modifyEvents();*/
+            if(k.getCode()==KeyCode.M) {
+                modifyEvents();
+                A.setFill(Color.BLACK);
+                M.setFill(Color.RED);
+                D.setFill(Color.BLACK);
+                System.out.println("M pressed");
+            }
         }
     };
     EventHandler<MouseEvent> mouserelease = new EventHandler<MouseEvent>() {
@@ -293,10 +312,12 @@ public class Controller {
                     l.endXProperty().bind(c.centerXProperty());
                     l.endYProperty().bind(c.centerYProperty());
                     l.setTo(c.getName());
+                    l.setStrokeWidth(2.0);
                     t = new Text();
                     t.setText(edge_wt.getText());
                     t.setX((l.getStartX()+l.getEndX())/2+10);
                     t.setY((l.getStartY()+l.getEndY())/2+10);
+                    t.setFill(Color.DARKRED);
                     edge_wt.clear();
                     listl.add(l);
                     emap.put(l,t);
@@ -318,6 +339,32 @@ public class Controller {
                     surface.getChildren().remove(emap.get(l));
                     emap.remove(l);
                     listl.remove(l);
+                    break;
+                }
+            }
+        }
+    };
+    EventHandler<MouseEvent> edgemodify = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+            for(MyEdge l : listl)
+            {
+                if(l.contains(e.getX(),e.getY())) {
+                    String s = edge_wt.getText();
+                    try {
+                        l.setWt(Integer.parseInt(s));
+                        emap.get(l).setText(s);
+                        edge_wt.clear();
+                    }catch (NumberFormatException e1)
+                    {
+                        Alert alert = new Alert(Alert.AlertType.WARNING);
+                        alert.setTitle("Warning");
+                        alert.setHeaderText("INVALID OR EMPTY WEIGHT");
+                        alert.setContentText("Please Enter Valid Weight");
+                        alert.showAndWait();
+                        edge_wt.clear();
+                        return;
+                    }
                     break;
                 }
             }
@@ -386,6 +433,7 @@ public class Controller {
 
         Square s ;
         s = new Square(startx,starty,10.0);
+        s.setStroke(Color.RED);
         //c.setRadius(10);
         //c.setStroke(Color.RED);
         //c.setCenterY(starty);
@@ -425,11 +473,11 @@ public class Controller {
         polyline.getPoints().addAll(arr);
         double[] arrs = new double[6];
         arrs[0]=startx;
-        arrs[1]=starty-15;
-        arrs[2]=startx+15;
-        arrs[3]=starty+15;
-        arrs[4]=startx-15;
-        arrs[5]=starty+15;
+        arrs[1]=starty-10;
+        arrs[2]=startx+10;
+        arrs[3]=starty+10;
+        arrs[4]=startx-10;
+        arrs[5]=starty+10;
 
         Triangle t ;
         t = new Triangle(arrs);
@@ -438,7 +486,7 @@ public class Controller {
         //c.setStroke(Color.RED);
         //c.setCenterY(starty);
         //c.setCenterX(startx);
-
+        t.setStroke(Color.RED);
         obj = t;
         surface.getChildren().addAll(obj);
         pathTransition = new PathTransition();
@@ -477,11 +525,15 @@ public class Controller {
        l.setStartY(starty);
        l.setEndX(startx+10);
        l.setEndY(starty);
+       l.setStrokeWidth(2.0);
+       l.setStroke(Color.RED);
        Line l1 = new Line();
        l1.setStartX(startx);
        l1.setStartY(starty-10);
        l1.setEndX(startx);
        l1.setEndY(starty+10);
+       l1.setStroke(Color.RED);
+       l1.setStrokeWidth(2.0);
        Group g = new Group(l,l1);
         obj = g;
         surface.getChildren().addAll(obj);
@@ -520,11 +572,15 @@ public class Controller {
         l.setStartY(starty-10);
         l.setEndX(startx+10);
         l.setEndY(starty+10);
+        l.setStrokeWidth(2.0);
+        l.setStroke(Color.RED);
         Line l1 = new Line();
         l1.setStartX(startx+10);
         l1.setStartY(starty-10);
         l1.setEndX(startx-10);
         l1.setEndY(starty+10);
+        l1.setStrokeWidth(2.0);
+        l1.setStroke(Color.RED);
         Group g = new Group(l,l1);
         obj = g;
         surface.getChildren().addAll(obj);
@@ -561,8 +617,13 @@ public class Controller {
         //surface.addEventHandler(KeyEvent.KEY_PRESSED,keyinput);
         for(MyCircle c : listc)
         {
+            c.removeEventFilter(MouseEvent.MOUSE_CLICKED,mousedelete);
             c.addEventFilter(MouseEvent.MOUSE_PRESSED,mousepress);
             c.addEventFilter(MouseEvent.MOUSE_RELEASED,mouserelease);
+        }
+        for(MyEdge m : listl)
+        {
+            l.removeEventFilter(MouseEvent.MOUSE_CLICKED,edgedelete);
         }
     }
     public void deleteEvents()
@@ -580,7 +641,22 @@ public class Controller {
             l.addEventFilter(MouseEvent.MOUSE_CLICKED,edgedelete);
         }
     }
-
+   public void modifyEvents()
+   {
+       surface.removeEventFilter(MouseEvent.MOUSE_CLICKED,mouseclick);
+       for(MyCircle c : listc)
+       {
+           //c.removeEventFilter(MouseEvent.MOUSE_CLICKED,mouseclick);
+           c.removeEventFilter(MouseEvent.MOUSE_PRESSED,mousepress);
+           c.removeEventFilter(MouseEvent.MOUSE_RELEASED,mouserelease);
+           c.removeEventFilter(MouseEvent.MOUSE_CLICKED,mousedelete);
+       }
+       for(MyEdge l:listl)
+       {
+           l.removeEventFilter(MouseEvent.MOUSE_CLICKED,edgedelete);
+           l.addEventFilter(MouseEvent.MOUSE_CLICKED,edgemodify);
+       }
+   }
 
     public void trying()
     {

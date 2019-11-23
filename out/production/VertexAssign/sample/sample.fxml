@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
 
     <tabs>
         <Tab text="     ADD     ">
@@ -107,6 +107,10 @@
                         <Button defaultButton="true" layoutX="676.0" layoutY="243.0" mnemonicParsing="false" text="Cross" onAction="#AnimateCross"/>
                         <Button layoutX="671.0" layoutY="314.0" mnemonicParsing="false" text="Path Only" onAction="#dijkstra2"/>
                         <Button defaultButton="true" layoutX="723.0" layoutY="243.0" mnemonicParsing="false" text="Triangle" onAction="#AnimateTriangle"/>
+                        <Text layoutX="658.0" layoutY="395.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Modes and Keys:-" />
+                        <Text layoutX="673.0" layoutY="420.0" strokeType="OUTSIDE" strokeWidth="0.0" text="A - Addition" fx:id="A"/>
+                        <Text layoutX="672.0" layoutY="444.0" strokeType="OUTSIDE" strokeWidth="0.0" text="D - Deletion" fx:id="D"/>
+                        <Text layoutX="671.0" layoutY="469.0" strokeType="OUTSIDE" strokeWidth="0.0" text="M - Modification" fx:id="M"/>
                     </children></AnchorPane>
             </content>
         </Tab>
