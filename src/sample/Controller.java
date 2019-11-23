@@ -14,8 +14,10 @@ import javafx.scene.input.MouseDragEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Polyline;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
@@ -363,6 +365,196 @@ public class Controller {
         pathTransition.play();
 
     }
+    public void AnimateSquare()
+    {
+        dijkstra2();
+        Double[] arr = new Double[2*(pathEdges.size()+1)];
+
+        Double startx = pathvertex.get(0).getCenterX();
+        Double starty = pathvertex.get(0).getCenterY();
+        System.out.println(startx + " "+starty);
+
+        int j = 0;
+        for(MyCircle c : pathvertex)
+        {
+            arr[j++]=c.getCenterX();
+            arr[j++]=c.getCenterY();
+        }
+
+        Polyline polyline = new Polyline();
+        polyline.getPoints().addAll(arr);
+
+        Square s ;
+        s = new Square(startx,starty,10.0);
+        //c.setRadius(10);
+        //c.setStroke(Color.RED);
+        //c.setCenterY(starty);
+        //c.setCenterX(startx);
+
+        obj = s;
+        surface.getChildren().addAll(obj);
+        pathTransition = new PathTransition();
+        /*Button s = new Button();
+        Group x = new Group(obj,s);*/
+
+        //surface.getChildren().addAll(obj);
+        pathTransition.setNode(obj);
+        pathTransition.setDuration(Duration.seconds(4));
+        pathTransition.setPath(polyline);
+        pathTransition.setCycleCount(PathTransition.INDEFINITE);
+        pathTransition.play();
+
+    }
+    public void AnimateTriangle()
+    {
+        dijkstra2();
+        Double[] arr = new Double[2*(pathEdges.size()+1)];
+
+        Double startx = pathvertex.get(0).getCenterX();
+        Double starty = pathvertex.get(0).getCenterY();
+        System.out.println(startx + " "+starty);
+
+        int j = 0;
+        for(MyCircle c : pathvertex)
+        {
+            arr[j++]=c.getCenterX();
+            arr[j++]=c.getCenterY();
+        }
+
+        Polyline polyline = new Polyline();
+        polyline.getPoints().addAll(arr);
+        double[] arrs = new double[6];
+        arrs[0]=startx;
+        arrs[1]=starty-15;
+        arrs[2]=startx+15;
+        arrs[3]=starty+15;
+        arrs[4]=startx-15;
+        arrs[5]=starty+15;
+
+        Triangle t ;
+        t = new Triangle(arrs);
+
+        //c.setRadius(10);
+        //c.setStroke(Color.RED);
+        //c.setCenterY(starty);
+        //c.setCenterX(startx);
+
+        obj = t;
+        surface.getChildren().addAll(obj);
+        pathTransition = new PathTransition();
+        /*Button s = new Button();
+        Group x = new Group(obj,s);*/
+
+        //surface.getChildren().addAll(obj);
+        pathTransition.setNode(obj);
+        pathTransition.setDuration(Duration.seconds(4));
+        pathTransition.setPath(polyline);
+        pathTransition.setCycleCount(PathTransition.INDEFINITE);
+        pathTransition.play();
+
+    }
+    public void AnimatePlus()
+    {
+        dijkstra2();
+        Double[] arr = new Double[2*(pathEdges.size()+1)];
+
+        Double startx = pathvertex.get(0).getCenterX();
+        Double starty = pathvertex.get(0).getCenterY();
+        System.out.println(startx + " "+starty);
+
+        int j = 0;
+        for(MyCircle c : pathvertex)
+        {
+            arr[j++]=c.getCenterX();
+            arr[j++]=c.getCenterY();
+        }
+
+        Polyline polyline = new Polyline();
+        polyline.getPoints().addAll(arr);
+
+       Line l = new Line();
+       l.setStartX(startx-10);
+       l.setStartY(starty);
+       l.setEndX(startx+10);
+       l.setEndY(starty);
+       Line l1 = new Line();
+       l1.setStartX(startx);
+       l1.setStartY(starty-10);
+       l1.setEndX(startx);
+       l1.setEndY(starty+10);
+       Group g = new Group(l,l1);
+        obj = g;
+        surface.getChildren().addAll(obj);
+        pathTransition = new PathTransition();
+        /*Button s = new Button();
+        Group x = new Group(obj,s);*/
+
+        //surface.getChildren().addAll(obj);
+        pathTransition.setNode(obj);
+        pathTransition.setDuration(Duration.seconds(4));
+        pathTransition.setPath(polyline);
+        pathTransition.setCycleCount(PathTransition.INDEFINITE);
+        pathTransition.play();
+    }
+    public void AnimateCross()
+    {
+        dijkstra2();
+        Double[] arr = new Double[2*(pathEdges.size()+1)];
+
+        Double startx = pathvertex.get(0).getCenterX();
+        Double starty = pathvertex.get(0).getCenterY();
+        System.out.println(startx + " "+starty);
+
+        int j = 0;
+        for(MyCircle c : pathvertex)
+        {
+            arr[j++]=c.getCenterX();
+            arr[j++]=c.getCenterY();
+        }
+
+        Polyline polyline = new Polyline();
+        polyline.getPoints().addAll(arr);
+
+        Line l = new Line();
+        l.setStartX(startx-10);
+        l.setStartY(starty-10);
+        l.setEndX(startx+10);
+        l.setEndY(starty+10);
+        Line l1 = new Line();
+        l1.setStartX(startx+10);
+        l1.setStartY(starty-10);
+        l1.setEndX(startx-10);
+        l1.setEndY(starty+10);
+        Group g = new Group(l,l1);
+        obj = g;
+        surface.getChildren().addAll(obj);
+        pathTransition = new PathTransition();
+        /*Button s = new Button();
+        Group x = new Group(obj,s);*/
+
+        //surface.getChildren().addAll(obj);
+        pathTransition.setNode(obj);
+        pathTransition.setDuration(Duration.seconds(4));
+        pathTransition.setPath(polyline);
+        pathTransition.setCycleCount(PathTransition.INDEFINITE);
+        pathTransition.play();
+    }
+    public void AnotherPath()
+    {
+
+        nFrom.clear();
+        nTo.clear();
+        pathTransition.stop();
+        surface.getChildren().remove(obj);
+        obj=null;
+        pathvertex= new ArrayList<>();
+        pathEdges= new ArrayList<>();
+        for(MyEdge m : listl)
+        {
+            m.setStroke(Color.BLACK);
+        }
+    }
+
     public void addEvents()
     {
         surface.addEventFilter(MouseEvent.MOUSE_CLICKED,mouseclick);
