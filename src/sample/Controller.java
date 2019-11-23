@@ -3,6 +3,8 @@ package sample;
 import javafx.animation.PathTransition;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
@@ -319,7 +321,9 @@ public class Controller {
             }
         }
     };
-    public void Animate()
+    Node obj;
+    PathTransition pathTransition;
+    public void AnimateCircle()
     {
         dijkstra2();
         Double[] arr = new Double[2*(pathEdges.size()+1)];
@@ -338,18 +342,25 @@ public class Controller {
         Polyline polyline = new Polyline();
         polyline.getPoints().addAll(arr);
 
-        Circle c = new Circle();
+        Circle c ;
+        c = new Circle();
         c.setRadius(10);
         c.setStroke(Color.RED);
-        c.setCenterX(startx);
         c.setCenterY(starty);
-        surface.getChildren().addAll(c);
-        PathTransition t = new PathTransition();
-        t.setNode(c);
-        t.setDuration(Duration.seconds(4));
-        t.setPath(polyline);
-        t.setCycleCount(PathTransition.INDEFINITE);
-        t.play();
+        c.setCenterX(startx);
+
+        obj = c;
+        surface.getChildren().addAll(obj);
+        pathTransition = new PathTransition();
+        /*Button s = new Button();
+        Group x = new Group(obj,s);*/
+
+        //surface.getChildren().addAll(obj);
+        pathTransition.setNode(obj);
+        pathTransition.setDuration(Duration.seconds(4));
+        pathTransition.setPath(polyline);
+        pathTransition.setCycleCount(PathTransition.INDEFINITE);
+        pathTransition.play();
 
     }
     public void addEvents()
@@ -392,6 +403,8 @@ public class Controller {
         surface.getChildren().removeAll(listl);
         surface.getChildren().removeAll(emap.values());
         surface.getChildren().removeAll(vmap.values());
+        pathTransition.stop();
+        surface.getChildren().remove(obj);
         listc.clear();
         listl.clear();
         emap.clear();

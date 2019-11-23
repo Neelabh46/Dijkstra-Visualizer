@@ -1,106 +1,114 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
 
-  <tabs>
-    <Tab text="     ADD     ">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="add_vertex_button" defaultButton="true" layoutX="252.0" layoutY="101.0" mnemonicParsing="false" onAction="#AddVertex" text=" Add Vertex" />
-                  <TextField fx:id="add_x" layoutX="38.0" layoutY="48.0" promptText="X Co-ordinate" />
-                  <TextField fx:id="add_y" layoutX="217.0" layoutY="48.0" promptText="Y-Co-ordinate" />
-                  <TextField fx:id="add_from" layoutX="38.0" layoutY="186.0" promptText=" From Vertex" />
-                  <TextField fx:id="add_to" layoutX="217.0" layoutY="186.0" promptText=" To Vertex" />
-                  <TextField fx:id="add_name" layoutX="385.0" layoutY="48.0" maxWidth="1.7976931348623157E308" promptText="Name of Vertex" />
-                  <TextField fx:id="add_wt" layoutX="385.0" layoutY="186.0" promptText="Weight" />
-                  <Button fx:id="add_edge_button" defaultButton="true" layoutX="258.0" layoutY="235.0" mnemonicParsing="false" onAction="#AddEdge" text="Add Edge" />
-               </children></AnchorPane>
-      </content>
-    </Tab>
-    <Tab text="     MODIFY   ">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <TextField fx:id="modify_x" layoutX="46.0" layoutY="58.0" promptText="New X-Coordinate" />
-                  <TextField fx:id="modify_y" layoutX="236.0" layoutY="58.0" promptText="New Y-Coordinate" />
-                  <TextField fx:id="modify_name" layoutX="417.0" layoutY="58.0" promptText="Name of Vertex" />
-                  <Button fx:id="modify_vertex_button" defaultButton="true" layoutX="266.0" layoutY="107.0" mnemonicParsing="false" onAction="#ModifyVertex" text="Modify Vertex" />
-                  <TextField fx:id="modify_from" layoutX="46.0" layoutY="201.0" promptText="From" />
-                  <TextField fx:id="modify_to" layoutX="236.0" layoutY="201.0" promptText="To" />
-                  <TextField fx:id="modify_wt" layoutX="417.0" layoutY="201.0" promptText="New Weight" />
-                  <Button fx:id="modify_edge_button" defaultButton="true" layoutX="273.0" layoutY="250.0" mnemonicParsing="false" onAction="#ModifyEdge" text="Modify Edge" />
-               </children></AnchorPane>
-      </content>
-    </Tab>
-      <Tab text="    DELETE   ">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <TextField fx:id="delete_name" layoutX="121.0" layoutY="58.0" promptText="Name of Vertex" />
-                  <Button fx:id="delete_vertex_button" defaultButton="true" layoutX="340.0" layoutY="58.0" mnemonicParsing="false" onAction="#DeleteVertex" text=" Delete Vertex" />
-                  <TextField fx:id="delete_from" layoutX="68.0" layoutY="151.0" promptText="From" />
-                  <Button fx:id="delete_edge_button" defaultButton="true" layoutX="423.0" layoutY="151.0" mnemonicParsing="false" onAction="#DeleteEdge" text="Delete Edge" />
-                  <TextField fx:id="delete_to" layoutX="248.0" layoutY="151.0" promptText="To" />
-               </children>
-            </AnchorPane>
-         </content>
-      </Tab>
-      <Tab text="    SEARCH   ">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <TextField fx:id="search_name" layoutX="118.0" layoutY="39.0" promptText="Name of Vertex" />
-                  <Button fx:id="search_vertex_button" defaultButton="true" layoutX="304.0" layoutY="39.0" mnemonicParsing="false" onAction="#SearchVertex" text="Search" />
-                  <TextField fx:id="search_from" layoutX="77.0" layoutY="192.0" promptText="From" />
-                  <Button fx:id="search_edge_button" defaultButton="true" layoutX="423.0" layoutY="192.0" mnemonicParsing="false" onAction="#SearchEdge" text="Search" />
-                   <Text fx:id="Search_vertex_details" layoutX="226.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Details" />
-                   <Text fx:id="Search_edge_details" layoutX="226.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Details" />
-                  <TextField fx:id="search_to" layoutX="245.0" layoutY="192.0" promptText="To" />
-               </children>
-            </AnchorPane>
-         </content>
-      </Tab>
-      <Tab text="  PATH  ">
-          <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                  <children>
-                      <TextField fx:id="print_from" layoutX="68.0" layoutY="151.0" promptText="From" />
-                      <Button fx:id="print_path_button" defaultButton="true" layoutX="412.0" layoutY="151.0" mnemonicParsing="false" onAction="#dijkstra" text="Print Path" />
-                      <TextField fx:id="print_to" layoutX="237.0" layoutY="151.0" promptText="To" />
-                      <Text fx:id="print_path" layoutX="277.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
-                  </children>
-              </AnchorPane>
-          </content>
-      </Tab>
-      <Tab text="   FILE   ">
-          <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                  <children>
-                      <Button fx:id="imports" defaultButton="true" layoutX="214.0" layoutY="98.0" mnemonicParsing="false" onAction="#Import" text="Import" />
-                      <Button fx:id="export" defaultButton="true" layoutX="313.0" layoutY="98.0" mnemonicParsing="false" onAction="#Export" text="Export" />
-                  </children>
-              </AnchorPane>
-          </content>
-      </Tab>
-      <Tab text="   MOUSE AND KEYBOARD EVENTS   ">
-         <content>
-            <AnchorPane fx:id="surface" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Button fx:id="Start" defaultButton="true" layoutX="32.0" layoutY="30.0" mnemonicParsing="false" onAction="#trying" text="Start" />
-                   <Button id="reset" defaultButton="true" layoutX="704.0" layoutY="18.0" mnemonicParsing="false" onAction="#ResetGraph" text="Reset" />
-                   <TextField id="vertex_name" fx:id="vertex_name" layoutX="629.0" layoutY="55.0" promptText="Vertex Name" />
-                   <TextField id="edge_wt" fx:id="edge_wt" layoutX="629.0" layoutY="95.0" promptText="Edge Wt" />
-                   <TextField  layoutX="630.0" layoutY="173.0" promptText="To" fx:id="nTo"/>
-                   <TextField  layoutX="630.0" layoutY="135.0" promptText="From" fx:id="nFrom"/>
-                   <Button defaultButton="true" layoutX="663.0" layoutY="213.0" mnemonicParsing="false" onAction="#dijkstra2" text="Display Path" />
-                  <Button layoutX="674.0" layoutY="245.0" mnemonicParsing="false" text="Animate" onAction="#Animate"/>
-               </children></AnchorPane>
-         </content>
-      </Tab>
-  </tabs>
+    <tabs>
+        <Tab text="     ADD     ">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <Button fx:id="add_vertex_button" defaultButton="true" layoutX="252.0" layoutY="101.0" mnemonicParsing="false" onAction="#AddVertex" text=" Add Vertex" />
+                        <TextField fx:id="add_x" layoutX="38.0" layoutY="48.0" promptText="X Co-ordinate" />
+                        <TextField fx:id="add_y" layoutX="217.0" layoutY="48.0" promptText="Y-Co-ordinate" />
+                        <TextField fx:id="add_from" layoutX="38.0" layoutY="186.0" promptText=" From Vertex" />
+                        <TextField fx:id="add_to" layoutX="217.0" layoutY="186.0" promptText=" To Vertex" />
+                        <TextField fx:id="add_name" layoutX="385.0" layoutY="48.0" maxWidth="1.7976931348623157E308" promptText="Name of Vertex" />
+                        <TextField fx:id="add_wt" layoutX="385.0" layoutY="186.0" promptText="Weight" />
+                        <Button fx:id="add_edge_button" defaultButton="true" layoutX="258.0" layoutY="235.0" mnemonicParsing="false" onAction="#AddEdge" text="Add Edge" />
+                    </children></AnchorPane>
+            </content>
+        </Tab>
+        <Tab text="     MODIFY   ">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <TextField fx:id="modify_x" layoutX="46.0" layoutY="58.0" promptText="New X-Coordinate" />
+                        <TextField fx:id="modify_y" layoutX="236.0" layoutY="58.0" promptText="New Y-Coordinate" />
+                        <TextField fx:id="modify_name" layoutX="417.0" layoutY="58.0" promptText="Name of Vertex" />
+                        <Button fx:id="modify_vertex_button" defaultButton="true" layoutX="266.0" layoutY="107.0" mnemonicParsing="false" onAction="#ModifyVertex" text="Modify Vertex" />
+                        <TextField fx:id="modify_from" layoutX="46.0" layoutY="201.0" promptText="From" />
+                        <TextField fx:id="modify_to" layoutX="236.0" layoutY="201.0" promptText="To" />
+                        <TextField fx:id="modify_wt" layoutX="417.0" layoutY="201.0" promptText="New Weight" />
+                        <Button fx:id="modify_edge_button" defaultButton="true" layoutX="273.0" layoutY="250.0" mnemonicParsing="false" onAction="#ModifyEdge" text="Modify Edge" />
+                    </children></AnchorPane>
+            </content>
+        </Tab>
+        <Tab text="    DELETE   ">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <TextField fx:id="delete_name" layoutX="121.0" layoutY="58.0" promptText="Name of Vertex" />
+                        <Button fx:id="delete_vertex_button" defaultButton="true" layoutX="340.0" layoutY="58.0" mnemonicParsing="false" onAction="#DeleteVertex" text=" Delete Vertex" />
+                        <TextField fx:id="delete_from" layoutX="68.0" layoutY="151.0" promptText="From" />
+                        <Button fx:id="delete_edge_button" defaultButton="true" layoutX="423.0" layoutY="151.0" mnemonicParsing="false" onAction="#DeleteEdge" text="Delete Edge" />
+                        <TextField fx:id="delete_to" layoutX="248.0" layoutY="151.0" promptText="To" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab text="    SEARCH   ">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <TextField fx:id="search_name" layoutX="118.0" layoutY="39.0" promptText="Name of Vertex" />
+                        <Button fx:id="search_vertex_button" defaultButton="true" layoutX="304.0" layoutY="39.0" mnemonicParsing="false" onAction="#SearchVertex" text="Search" />
+                        <TextField fx:id="search_from" layoutX="77.0" layoutY="192.0" promptText="From" />
+                        <Button fx:id="search_edge_button" defaultButton="true" layoutX="423.0" layoutY="192.0" mnemonicParsing="false" onAction="#SearchEdge" text="Search" />
+                        <Text fx:id="Search_vertex_details" layoutX="226.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Details" />
+                        <Text fx:id="Search_edge_details" layoutX="226.0" layoutY="267.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Details" />
+                        <TextField fx:id="search_to" layoutX="245.0" layoutY="192.0" promptText="To" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab text="  PATH  ">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <TextField fx:id="print_from" layoutX="68.0" layoutY="151.0" promptText="From" />
+                        <Button fx:id="print_path_button" defaultButton="true" layoutX="412.0" layoutY="151.0" mnemonicParsing="false" onAction="#dijkstra" text="Print Path" />
+                        <TextField fx:id="print_to" layoutX="237.0" layoutY="151.0" promptText="To" />
+                        <Text fx:id="print_path" layoutX="277.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab text="   FILE   ">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <Button fx:id="imports" defaultButton="true" layoutX="214.0" layoutY="98.0" mnemonicParsing="false" onAction="#Import" text="Import" />
+                        <Button fx:id="export" defaultButton="true" layoutX="313.0" layoutY="98.0" mnemonicParsing="false" onAction="#Export" text="Export" />
+                    </children>
+                </AnchorPane>
+            </content>
+        </Tab>
+        <Tab text="   MOUSE AND KEYBOARD EVENTS   ">
+            <content>
+                <AnchorPane fx:id="surface" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                    <children>
+                        <Button fx:id="Start" defaultButton="true" layoutX="21.0" layoutY="18.0" mnemonicParsing="false" onAction="#trying" text="Start" />
+                        <Button id="reset" defaultButton="true" layoutX="704.0" layoutY="18.0" mnemonicParsing="false" onAction="#ResetGraph" text="Reset" />
+                        <TextField id="vertex_name" fx:id="vertex_name" layoutX="629.0" layoutY="55.0" promptText="Vertex Name" />
+                        <TextField id="edge_wt" fx:id="edge_wt" layoutX="629.0" layoutY="95.0" promptText="Edge Wt" />
+                        <TextField fx:id="nTo" layoutX="630.0" layoutY="173.0" promptText="To" />
+                        <TextField fx:id="nFrom" layoutX="630.0" layoutY="135.0" promptText="From" />
+                        <Button defaultButton="true" layoutX="652.0" layoutY="209.0" mnemonicParsing="false" onAction="#AnimateCircle" text="Circle" />
+                        <Button defaultButton="true" layoutX="705.0" layoutY="209.0" mnemonicParsing="false" text="Square" />
+                        <Button layoutX="661.0" layoutY="283.0" mnemonicParsing="false" text="Another Path" />
+                        <Button defaultButton="true" layoutX="633.0" layoutY="243.0" mnemonicParsing="false" text="Plus" />
+                        <Button defaultButton="true" layoutX="676.0" layoutY="243.0" mnemonicParsing="false" text="Cross" />
+                        <Button layoutX="671.0" layoutY="314.0" mnemonicParsing="false" text="Path Only" onAction="#dijkstra2"/>
+                        <Button defaultButton="true" layoutX="723.0" layoutY="243.0" mnemonicParsing="false" text="Triangle" />
+                    </children></AnchorPane>
+            </content>
+        </Tab>
+    </tabs>
 </TabPane>
