@@ -102,7 +102,7 @@
                         <TextField fx:id="nFrom" layoutX="630.0" layoutY="135.0" promptText="From" />
                         <Button defaultButton="true" layoutX="652.0" layoutY="209.0" mnemonicParsing="false" onAction="#AnimateCircle" text="Circle" />
                         <Button defaultButton="true" layoutX="705.0" layoutY="209.0" mnemonicParsing="false" text="Square" onAction="#AnimateSquare" />
-                        <Button layoutX="661.0" layoutY="283.0" mnemonicParsing="false" text="Another Path" onAction="#AnotherPath"/>
+                        <Button layoutX="661.0" layoutY="283.0" mnemonicParsing="false" text="Stop Animation" onAction="#AnotherPath"/>
                         <Button defaultButton="true" layoutX="633.0" layoutY="243.0" mnemonicParsing="false" text="Plus" onAction="#AnimatePlus"/>
                         <Button defaultButton="true" layoutX="676.0" layoutY="243.0" mnemonicParsing="false" text="Cross" onAction="#AnimateCross"/>
                         <Button layoutX="671.0" layoutY="314.0" mnemonicParsing="false" text="Path Only" onAction="#dijkstra2"/>

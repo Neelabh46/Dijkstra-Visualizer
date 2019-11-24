@@ -370,11 +370,16 @@ public class Controller {
             }
         }
     };
-    Node obj;
-    PathTransition pathTransition;
+    ArrayList<Node> obj  = new ArrayList<>();
+    ArrayList<PathTransition> pathTransition = new ArrayList<>();
     public void AnimateCircle()
     {
+
+        pathvertex= new ArrayList<>();
+        pathEdges= new ArrayList<>();
         dijkstra2();
+        nFrom.clear();
+        nTo.clear();
         Double[] arr = new Double[2*(pathEdges.size()+1)];
 
         Double startx = pathvertex.get(0).getCenterX();
@@ -397,24 +402,31 @@ public class Controller {
         c.setStroke(Color.RED);
         c.setCenterY(starty);
         c.setCenterX(startx);
+        Node n = c;
 
-        obj = c;
-        surface.getChildren().addAll(obj);
-        pathTransition = new PathTransition();
+        surface.getChildren().addAll(n);
+        obj.add(n);
+        PathTransition p = new PathTransition();
         /*Button s = new Button();
         Group x = new Group(obj,s);*/
 
         //surface.getChildren().addAll(obj);
-        pathTransition.setNode(obj);
-        pathTransition.setDuration(Duration.seconds(4));
-        pathTransition.setPath(polyline);
-        pathTransition.setCycleCount(PathTransition.INDEFINITE);
-        pathTransition.play();
+        p.setNode(n);
+        p.setDuration(Duration.seconds(4));
+        p.setPath(polyline);
+        p.setCycleCount(PathTransition.INDEFINITE);
+        p.play();
+        pathTransition.add(p);
 
     }
     public void AnimateSquare()
     {
+
+        pathvertex= new ArrayList<>();
+        pathEdges= new ArrayList<>();
         dijkstra2();
+        nFrom.clear();
+        nTo.clear();
         Double[] arr = new Double[2*(pathEdges.size()+1)];
 
         Double startx = pathvertex.get(0).getCenterX();
@@ -438,24 +450,31 @@ public class Controller {
         //c.setStroke(Color.RED);
         //c.setCenterY(starty);
         //c.setCenterX(startx);
+        Node n = s;
 
-        obj = s;
-        surface.getChildren().addAll(obj);
-        pathTransition = new PathTransition();
+        surface.getChildren().addAll(n);
+        PathTransition p = new PathTransition();
         /*Button s = new Button();
         Group x = new Group(obj,s);*/
 
         //surface.getChildren().addAll(obj);
-        pathTransition.setNode(obj);
-        pathTransition.setDuration(Duration.seconds(4));
-        pathTransition.setPath(polyline);
-        pathTransition.setCycleCount(PathTransition.INDEFINITE);
-        pathTransition.play();
+        p.setNode(n);
+        p.setDuration(Duration.seconds(4));
+        p.setPath(polyline);
+        p.setCycleCount(PathTransition.INDEFINITE);
+        p.play();
+        pathTransition.add(p);
+        obj.add(n);
 
     }
     public void AnimateTriangle()
     {
+
+        pathvertex= new ArrayList<>();
+        pathEdges= new ArrayList<>();
         dijkstra2();
+        nFrom.clear();
+        nTo.clear();
         Double[] arr = new Double[2*(pathEdges.size()+1)];
 
         Double startx = pathvertex.get(0).getCenterX();
@@ -487,23 +506,29 @@ public class Controller {
         //c.setCenterY(starty);
         //c.setCenterX(startx);
         t.setStroke(Color.RED);
-        obj = t;
-        surface.getChildren().addAll(obj);
-        pathTransition = new PathTransition();
+        Node n = t;
+        obj.add(n);
+        surface.getChildren().addAll(n);
+        PathTransition p  = new PathTransition();
         /*Button s = new Button();
         Group x = new Group(obj,s);*/
 
         //surface.getChildren().addAll(obj);
-        pathTransition.setNode(obj);
-        pathTransition.setDuration(Duration.seconds(4));
-        pathTransition.setPath(polyline);
-        pathTransition.setCycleCount(PathTransition.INDEFINITE);
-        pathTransition.play();
-
+        p.setNode(n);
+        p.setDuration(Duration.seconds(4));
+        p.setPath(polyline);
+        p.setCycleCount(PathTransition.INDEFINITE);
+        p.play();
+        pathTransition.add(p);
     }
     public void AnimatePlus()
     {
+
+        pathvertex= new ArrayList<>();
+        pathEdges= new ArrayList<>();
         dijkstra2();
+        nFrom.clear();
+        nTo.clear();
         Double[] arr = new Double[2*(pathEdges.size()+1)];
 
         Double startx = pathvertex.get(0).getCenterX();
@@ -535,22 +560,29 @@ public class Controller {
        l1.setStroke(Color.RED);
        l1.setStrokeWidth(2.0);
        Group g = new Group(l,l1);
-        obj = g;
-        surface.getChildren().addAll(obj);
-        pathTransition = new PathTransition();
+        Node n = g;
+        surface.getChildren().addAll(n);
+        obj.add(n);
+        PathTransition p = new PathTransition();
         /*Button s = new Button();
         Group x = new Group(obj,s);*/
 
         //surface.getChildren().addAll(obj);
-        pathTransition.setNode(obj);
-        pathTransition.setDuration(Duration.seconds(4));
-        pathTransition.setPath(polyline);
-        pathTransition.setCycleCount(PathTransition.INDEFINITE);
-        pathTransition.play();
+        p.setNode(n);
+        p.setDuration(Duration.seconds(4));
+        p.setPath(polyline);
+        p.setCycleCount(PathTransition.INDEFINITE);
+        p.play();
+        pathTransition.add(p);
     }
     public void AnimateCross()
     {
+
+        pathvertex= new ArrayList<>();
+        pathEdges= new ArrayList<>();
         dijkstra2();
+        nFrom.clear();
+        nTo.clear();
         Double[] arr = new Double[2*(pathEdges.size()+1)];
 
         Double startx = pathvertex.get(0).getCenterX();
@@ -582,33 +614,34 @@ public class Controller {
         l1.setStrokeWidth(2.0);
         l1.setStroke(Color.RED);
         Group g = new Group(l,l1);
-        obj = g;
-        surface.getChildren().addAll(obj);
-        pathTransition = new PathTransition();
+        Node n =g;
+        obj.add(n);
+        surface.getChildren().addAll(n);
+        PathTransition p = new PathTransition();
         /*Button s = new Button();
         Group x = new Group(obj,s);*/
 
         //surface.getChildren().addAll(obj);
-        pathTransition.setNode(obj);
-        pathTransition.setDuration(Duration.seconds(4));
-        pathTransition.setPath(polyline);
-        pathTransition.setCycleCount(PathTransition.INDEFINITE);
-        pathTransition.play();
+        p.setNode(n);
+        p.setDuration(Duration.seconds(4));
+        p.setPath(polyline);
+        p.setCycleCount(PathTransition.INDEFINITE);
+        p.play();
+        pathTransition.add(p);
     }
     public void AnotherPath()
     {
-
-        nFrom.clear();
-        nTo.clear();
-        pathTransition.stop();
-        surface.getChildren().remove(obj);
-        obj=null;
-        pathvertex= new ArrayList<>();
-        pathEdges= new ArrayList<>();
         for(MyEdge m : listl)
         {
             m.setStroke(Color.BLACK);
         }
+        for(PathTransition p : pathTransition)
+        {
+            p.stop();
+        }
+        pathTransition.clear();
+        surface.getChildren().removeAll(obj);
+        obj.clear();
     }
 
     public void addEvents()
@@ -671,8 +704,13 @@ public class Controller {
         surface.getChildren().removeAll(listl);
         surface.getChildren().removeAll(emap.values());
         surface.getChildren().removeAll(vmap.values());
-        pathTransition.stop();
-        surface.getChildren().remove(obj);
+        surface.getChildren().removeAll(obj);
+        for(PathTransition p : pathTransition)
+        {
+            p.stop();
+        }
+        pathTransition.clear();
+        obj.clear();
         listc.clear();
         listl.clear();
         emap.clear();
@@ -764,10 +802,10 @@ public class Controller {
                 }
             }
             Edge e = new Edge(from, to, wt);
-            Edge e1 = new Edge(to, from, wt);
+           // Edge e1 = new Edge(to, from, wt);
 
             liste.add(e);
-            liste.add(e1);
+            //liste.add(e1);
             System.out.println("added");
         } catch (NumberFormatException e) {
             add_from.clear();
@@ -1063,9 +1101,9 @@ public class Controller {
                 String to = input.next();
                 int wt = input.nextInt();
                 Edge e1 = new Edge(from, to, wt);
-                Edge e2 = new Edge(to, from, wt);
+                //Edge e2 = new Edge(to, from, wt);
                 liste.add(e1);
-                liste.add(e2);
+                //liste.add(e2);
                 E--;
             }
         }
