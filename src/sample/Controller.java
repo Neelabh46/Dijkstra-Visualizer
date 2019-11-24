@@ -189,6 +189,7 @@ public class Controller {
             String name = vertex_name.getText();
             if(name.isEmpty())
             {
+                //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText("EMPTY NAME!!");
@@ -217,6 +218,7 @@ public class Controller {
                 l = new MyEdge(wt);
             }catch (NumberFormatException e1)
             {
+                //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
                 Alert alert = new Alert(Alert.AlertType.WARNING);
                 alert.setTitle("Warning");
                 alert.setHeaderText("INVALID OR EMPTY WEIGHT");
@@ -825,6 +827,7 @@ public class Controller {
             add_x.clear();
             add_y.clear();
             add_name.clear();
+            //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("ILLEGAL INPUT!!");
@@ -832,6 +835,7 @@ public class Controller {
             alert.showAndWait();
 
         }catch (NullPointerException e) {
+            //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("EMPTY INPUT!!");
@@ -840,6 +844,7 @@ public class Controller {
         } catch (Exception e) {
 
             add_name.clear();
+            //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("Vertex Name Already Present!!");
@@ -894,12 +899,14 @@ public class Controller {
             add_from.clear();
             add_to.clear();
             add_wt.clear();
+            //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("ILLEGAL INPUT!!");
             alert.setContentText("Please enter integer value in weight field");
             alert.showAndWait();
         } catch (NullPointerException e) {
+            //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("EMPTY INPUT!!");
@@ -908,6 +915,7 @@ public class Controller {
         }catch (Exception e) {
             add_from.clear();
             add_to.clear();
+            //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("EDGE ALREADY PRESENT!!");
@@ -933,6 +941,7 @@ public class Controller {
                 Search_vertex_details.setText("Vertex Not Found");
             }
         }catch (NullPointerException e) {
+            //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("EMPTY INPUT!!");
@@ -962,6 +971,7 @@ public class Controller {
                Search_edge_details.setText("Edge not Found ");
            }
        }catch (NullPointerException e) {
+           //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
            Alert alert = new Alert(Alert.AlertType.WARNING);
            alert.setTitle("Warning");
            alert.setHeaderText("EMPTY INPUT!!");
@@ -998,12 +1008,14 @@ public class Controller {
            add_from.clear();
            add_to.clear();
            add_wt.clear();
+           //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
            Alert alert = new Alert(Alert.AlertType.WARNING);
            alert.setTitle("Warning");
            alert.setHeaderText("ILLEGAL INPUT!!");
            alert.setContentText("Please enter integer value in weight field");
            alert.showAndWait();
        }catch (NullPointerException e) {
+           //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
            Alert alert = new Alert(Alert.AlertType.WARNING);
            alert.setTitle("Warning");
            alert.setHeaderText("EMPTY INPUT!!");
@@ -1012,6 +1024,7 @@ public class Controller {
        } catch (Exception e) {
            modify_from.clear();
            modify_to.clear();
+           //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
            Alert alert = new Alert(Alert.AlertType.WARNING);
            alert.setTitle("Warning");
            alert.setHeaderText("EDGE NOT FOUND");
@@ -1048,12 +1061,14 @@ public class Controller {
            }
        }catch (NumberFormatException e)
        {
+           //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
            Alert alert = new Alert(Alert.AlertType.WARNING);
            alert.setTitle("Warning");
            alert.setHeaderText("ILLEGAL INPUT!!");
            alert.setContentText("Please enter integer values in coordinates field");
            alert.showAndWait();
        } catch (NullPointerException e) {
+           //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
            Alert alert = new Alert(Alert.AlertType.WARNING);
            alert.setTitle("Warning");
            alert.setHeaderText("EMPTY INPUT!!");
@@ -1061,6 +1076,7 @@ public class Controller {
            alert.showAndWait();
        }catch (Exception e) {
            modify_name.clear();
+           //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
            Alert alert = new Alert(Alert.AlertType.WARNING);
            alert.setTitle("Warning");
            alert.setHeaderText("VERTEX NOT FOUND");
@@ -1093,12 +1109,14 @@ public class Controller {
                 throw new Exception();
             }
         } catch (NullPointerException e) {
+            //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("ILLEGAL INPUT!!");
             alert.setContentText("Please Enter Valid Edge Details");
             alert.showAndWait();
         } catch (Exception e) {
+            //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("EDGE NOT FOUND");
@@ -1138,12 +1156,14 @@ public class Controller {
             liste.removeAll(temp);
 
         } catch (NullPointerException e) {
+            //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("ILLEGAL INPUT!!");
             alert.setContentText("Please Enter Valid Vertex Name");
             alert.showAndWait();
         } catch (Exception e) {
+            //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("VERTEX NOT FOUND");
@@ -1198,6 +1218,7 @@ public class Controller {
             }
         }catch (Exception e)
         {
+            //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("CORRUPT INPUT FILE");
@@ -1251,6 +1272,7 @@ public class Controller {
         String des = print_to.getText();
         if(source.isEmpty() || des.isEmpty())
         {
+            //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("EMPTY INPUT");
@@ -1271,6 +1293,7 @@ public class Controller {
             add_from.clear();
             add_to.clear();
             add_wt.clear();
+            //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("VERTEX ENTERED DOES NOT EXIST");
@@ -1370,6 +1393,7 @@ public class Controller {
         String des = nTo.getText();
         if(source.isEmpty() || des.isEmpty())
         {
+            //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("EMPTY INPUT");
@@ -1390,6 +1414,7 @@ public class Controller {
 
             /*add_to.clear();
             add_wt.clear();*/
+            //  Reference :- https://code.makery.ch/blog/javafx-dialogs-official/
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Warning");
             alert.setHeaderText("VERTEX ENTERED DOES NOT EXIST");
