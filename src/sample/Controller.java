@@ -146,13 +146,13 @@ public class Controller {
     MyEdge l;
     ArrayList<MyCircle> listc = new ArrayList<>();
     ArrayList<MyEdge> listl = new ArrayList<>();
-    ArrayList<Vertex> listv_new = new ArrayList<>();
-    ArrayList<Edge> liste_new = new ArrayList<>();
     Map<MyCircle,Text> vmap = new HashMap<>();
     Map<MyEdge,Text> emap = new HashMap<>();
     ArrayList<Integer> mpath;
     ArrayList<MyEdge> pathEdges = new ArrayList<>();
     ArrayList<MyCircle> pathvertex = new ArrayList<>();
+    MyCircle dragVertex ;
+    Double mX,mY;
     EventHandler<MouseEvent> mouseclick = new EventHandler<MouseEvent>() {
         @Override
         public void handle(MouseEvent e) {
@@ -166,14 +166,10 @@ public class Controller {
             c.setCenterX(e.getX());
             c.setCenterY(e.getY());
             c.setRadius(12);
-
-
             if(c.intersects(r.getLayoutBounds())) {
                 System.out.println("intersection");
                 return;
             }
-
-
             for(MyEdge l : listl)
             {
                 if(l.intersects(c.getLayoutBounds())) {
@@ -235,6 +231,8 @@ public class Controller {
                 {
                     l.setStartX(c.getCenterX());
                     l.setStartY(c.getCenterY());
+                    l.startXProperty().bind(c.centerXProperty());
+                    l.startYProperty().bind(c.centerYProperty());
                     l.setFrom(c.getName());
                     return;
                 }
@@ -316,6 +314,8 @@ public class Controller {
                     t = new Text();
                     t.setText(edge_wt.getText());
                     t.setX((l.getStartX()+l.getEndX())/2+10);
+                    /*t.xProperty().bind(l.startXProperty());
+                    t.yProperty().bind(l.startYProperty());*/
                     t.setY((l.getStartY()+l.getEndY())/2+10);
                     t.setFill(Color.DARKRED);
                     edge_wt.clear();
@@ -370,7 +370,84 @@ public class Controller {
             }
         }
     };
-    ArrayList<Node> obj  = new ArrayList<>();
+    EventHandler<MouseEvent> vertexpress = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+
+            for(MyCircle c : listc)
+            {
+                if(c.contains(e.getX(),e.getY()))
+                {
+                    dragVertex = c;
+                    mX=c.getCenterX();
+                    mY=c.getCenterY();
+                    break;
+                }
+            }
+        }
+    };
+    EventHandler<MouseEvent> vertexrelease = new EventHandler<MouseEvent>() {
+        @Override
+        public void handle(MouseEvent e) {
+            if(dragVertex == null)
+                return;
+            Rectangle r = new Rectangle();
+            r.setX(600);
+            r.setY(0);
+            r.setWidth(200);
+            r.setHeight(600);
+            MyCircle c = new MyCircle("asd");
+            c.setCenterX(e.getX());
+            c.setCenterY(e.getY());
+            c.setRadius(12);
+            if(c.intersects(r.getLayoutBounds())) {
+                System.out.println("intersection");
+                return;
+            }
+            /*for(MyEdge l : listl)
+            {
+                if(l.intersects(c.getLayoutBounds())) {
+                    System.out.println("Edge present");
+                    return;
+                }
+            }*/
+            for(MyCircle c1 : listc)
+            {
+                if(c1.intersects(c.getLayoutBounds()))
+                {
+                    System.out.println(e.getSceneX()+" "+ e.getSceneY());
+                    return;
+                }
+
+            }
+            int i = listc.indexOf(dragVertex);
+            Circle a  = listc.get(i);
+            a.setCenterX(e.getX());
+            a.setCenterY(e.getY());
+            vmap.get(a).setX(a.getCenterX()-5);
+            vmap.get(a).setY(a.getCenterY()-25);
+            for(MyEdge l : listl)
+            {
+                if(l.getEndX()==mX&&l.getEndY()==mY)
+                {
+                    l.setEndX(e.getX());
+                    l.setEndY(e.getY());
+                    emap.get(l).setX((l.getStartX()+l.getEndX())/2+10);
+                    emap.get(l).setY((l.getStartY()+l.getEndY())/2+10);
+                }
+                if(l.getStartX()==mX&&l.getStartY()==mY)
+                {
+                    l.setStartX(e.getX());
+                    l.setStartY(e.getY());
+                    emap.get(l).setX((mX+e.getX())/2+10);
+                    emap.get(l).setY((mY+e.getY())/2+10);
+                }
+
+            }
+
+        }
+    };
+     ArrayList<Node> obj  = new ArrayList<>();
     ArrayList<PathTransition> pathTransition = new ArrayList<>();
     public void AnimateCircle()
     {
@@ -647,12 +724,14 @@ public class Controller {
     public void addEvents()
     {
         surface.addEventFilter(MouseEvent.MOUSE_CLICKED,mouseclick);
+        surface.removeEventFilter(MouseEvent.MOUSE_RELEASED,vertexrelease);
         //surface.addEventHandler(KeyEvent.KEY_PRESSED,keyinput);
         for(MyCircle c : listc)
         {
             c.removeEventFilter(MouseEvent.MOUSE_CLICKED,mousedelete);
             c.addEventFilter(MouseEvent.MOUSE_PRESSED,mousepress);
             c.addEventFilter(MouseEvent.MOUSE_RELEASED,mouserelease);
+            c.removeEventFilter(MouseEvent.MOUSE_PRESSED,vertexpress);
         }
         for(MyEdge m : listl)
         {
@@ -662,12 +741,14 @@ public class Controller {
     public void deleteEvents()
     {
         surface.removeEventFilter(MouseEvent.MOUSE_CLICKED,mouseclick);
+        surface.removeEventFilter(MouseEvent.MOUSE_RELEASED,vertexrelease);
         for(MyCircle c : listc)
         {
             //c.removeEventFilter(MouseEvent.MOUSE_CLICKED,mouseclick);
             c.removeEventFilter(MouseEvent.MOUSE_PRESSED,mousepress);
             c.removeEventFilter(MouseEvent.MOUSE_RELEASED,mouserelease);
             c.addEventFilter(MouseEvent.MOUSE_CLICKED,mousedelete);
+            c.removeEventFilter(MouseEvent.MOUSE_PRESSED,vertexpress);
         }
         for(MyEdge l:listl)
         {
@@ -677,12 +758,14 @@ public class Controller {
    public void modifyEvents()
    {
        surface.removeEventFilter(MouseEvent.MOUSE_CLICKED,mouseclick);
+       surface.addEventFilter(MouseEvent.MOUSE_RELEASED,vertexrelease);
        for(MyCircle c : listc)
        {
            //c.removeEventFilter(MouseEvent.MOUSE_CLICKED,mouseclick);
            c.removeEventFilter(MouseEvent.MOUSE_PRESSED,mousepress);
            c.removeEventFilter(MouseEvent.MOUSE_RELEASED,mouserelease);
            c.removeEventFilter(MouseEvent.MOUSE_CLICKED,mousedelete);
+           c.addEventFilter(MouseEvent.MOUSE_PRESSED,vertexpress);
        }
        for(MyEdge l:listl)
        {
@@ -1074,40 +1157,53 @@ public class Controller {
 
 
     public void Import() {
-        JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-        if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
-            File file = chooser.getSelectedFile();
-            Scanner input = null;
-            try {
-                input = new Scanner(file);
-            } catch (FileNotFoundException e1) {
-                e1.printStackTrace();
-            }
-            int V;
-            assert input != null;
-            V = input.nextInt();
-            while (V > 0) {
-                String name = input.next();
-                int x = input.nextInt();
-                int y = input.nextInt();
-                Vertex v1 = new Vertex(x, y, name);
-                listv.add(v1);
-                V--;
-            }
-            int E;
-            E = input.nextInt();
-            while (E > 0) {
-                String from = input.next();
-                String to = input.next();
-                int wt = input.nextInt();
-                Edge e1 = new Edge(from, to, wt);
-                //Edge e2 = new Edge(to, from, wt);
-                liste.add(e1);
-                //liste.add(e2);
-                E--;
-            }
-        }
+        try {
+            ArrayList<Vertex> temp1 = new ArrayList<>();
+            ArrayList<Edge> temp2 = new ArrayList<>();
+            JFileChooser chooser = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
+            if (chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
+                File file = chooser.getSelectedFile();
+                Scanner input = null;
+                try {
+                    input = new Scanner(file);
+                } catch (FileNotFoundException e1) {
+                    e1.printStackTrace();
+                }
+                int V;
+                assert input != null;
+                V = input.nextInt();
+                while (V > 0) {
 
+                    String name = input.next();
+                    int x = input.nextInt();
+                    int y = input.nextInt();
+                    Vertex v1 = new Vertex(x, y, name);
+                    temp1.add(v1);
+                    V--;
+                }
+                int E;
+                E = input.nextInt();
+                while (E > 0) {
+                    String from = input.next();
+                    String to = input.next();
+                    int wt = input.nextInt();
+                    Edge e1 = new Edge(from, to, wt);
+                    //Edge e2 = new Edge(to, from, wt);
+                    temp2.add(e1);
+                    //liste.add(e2);
+                    E--;
+                }
+                listv.addAll(temp1);
+                liste.addAll(temp2);
+            }
+        }catch (Exception e)
+        {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Warning");
+            alert.setHeaderText("CORRUPT INPUT FILE");
+            alert.setContentText("Please Enter Correct Input Details");
+            alert.showAndWait();
+        }
     }
 
     public void Export() {
